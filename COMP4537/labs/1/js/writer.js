@@ -6,6 +6,8 @@ let data = {
     notes: []
 };
 
+let current_notes = [];
+
 function getNotes() {
     let local_data = JSON.parse(localStorage.getItem("data"));
 
@@ -13,6 +15,10 @@ function getNotes() {
         localStorage.setItem("data", JSON.stringify(data));
     } else {
         data = local_data;
+
+        data.notes.forEach(note => {
+            current_notes.push(new NoteCard(note.id, deleteCard, note.text));
+        });
     }
 }
 
@@ -20,50 +26,43 @@ function saveNotes() {
     localStorage.setItem("data", JSON.stringify(data));
     
     document.getElementById("time-text").innerHTML = STRINGS.STORE_TIME_MESSAGE + new Date().toLocaleTimeString();
+
+    console.log(data);
 }
 
 function saveNoteContents() {
-    data.notes.forEach(note => {
-        note.text = document.getElementById(`text-${note.id}`).value;
+    let new_notes = [];
+
+    current_notes.forEach(note => {
+        note.updateText();
+        new_notes.push({id: note.id, text: note.text});
     });
+
+    data.notes = new_notes;
 }
 
 function displayCards() {
     const all_notes = document.getElementById("all-notes");
     all_notes.innerHTML = "";
 
-    data.notes.forEach(note => {
-        const note_card = document.createElement("div");
-
-        const text_area = document.createElement("textarea");
-        text_area.value = note.text;
-        text_area.id = `text-${note.id}`;
-        note_card.appendChild(text_area);
-
-        const delete_btn = document.createElement("button");
-        delete_btn.innerHTML = STRINGS.DELETE_BUTTON;
-        delete_btn.classList.add("delete-button");
-        delete_btn.addEventListener("click", function () {
-            console.log("DELETE");
-
-            data.notes = data.notes.filter((a_note) => {
-                return a_note.id !== note.id;
-            })
-
-            document.getElementById(`${note.id}`).remove();
-        })
-        note_card.appendChild(delete_btn);
-
-        note_card.classList.add("note-card");
-        note_card.id = note.id;
-
-        all_notes.appendChild(note_card);
+    current_notes.forEach(note => {
+        all_notes.appendChild(note.card);
     });
+}
+
+function deleteCard(id) {
+    console.log("DELETE");
+
+    current_notes = current_notes.filter((a_note) => {
+        return a_note.id !== id;
+    })
+
+    document.getElementById(`${id}`).remove();
 }
 
 function setUp() {
     getNotes();
-    saveNotes();
+    document.getElementById("time-text").innerHTML = STRINGS.STORE_TIME_MESSAGE + new Date().toLocaleTimeString();
 
     displayCards();
 
@@ -80,7 +79,8 @@ function setUp() {
     // Insert Add Button function
     add_button.onclick = function() {  
         let card_id = data.last_id++;
-        data.notes.push(new NoteCard(card_id));
+        current_notes.push(new NoteCard(card_id, deleteCard));
+        data.notes.push({id: card_id, text: ""});
         displayCards();
     };
 }

@@ -1,15 +1,12 @@
 import { STRINGS } from "../lang/messages/en/user.js";
 
-let data = {
-    last_id: 0,
-    notes: []
-};
+let data = [];
 
 function getNotes() {
     let local_data = JSON.parse(localStorage.getItem("data"));
 
     if (local_data !== null) {
-        data = local_data;
+        data = local_data.notes;
     }
 }
 
@@ -19,7 +16,7 @@ function updateNotes() {
     const all_notes = document.getElementById("all-notes");
     all_notes.innerHTML = "";
 
-    data.notes.forEach(note => {
+    data.forEach(note => {
         const note_card = document.createElement("div");
 
         const text_area = document.createElement("textarea");
@@ -31,10 +28,8 @@ function updateNotes() {
         note_card.id = note.id;
 
         all_notes.appendChild(note_card);
-
     });
     
-    console.log("asd")
     document.getElementById("time-text").innerHTML = STRINGS.UPDATE_TIME_MESSAGE + new Date().toLocaleTimeString();
 }
 
