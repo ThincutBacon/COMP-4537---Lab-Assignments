@@ -34,6 +34,7 @@ function updateNotes() {
 
     });
     
+    console.log("asd")
     document.getElementById("time-text").innerHTML = STRINGS.UPDATE_TIME_MESSAGE + new Date().toLocaleTimeString();
 }
 
@@ -43,7 +44,7 @@ function setUp() {
 
     updateNotes();
 
-    setInterval(updateNotes(), 2000);
+    setInterval(updateNotes, 2000);
 }
 
 setUp();
