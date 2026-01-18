@@ -18,7 +18,7 @@ body {
     align-items: center;
 }
 
-#nav-writer, #nav-reader {
+button {
     width: 10em;
     height: 2.5em;
 
@@ -27,6 +27,10 @@ body {
     border-radius: 1em;
 
     font-size: larger;
+}
+
+button:hover {
+    background-color: rgb(228, 223, 223);
 }
 
 #add-button {
@@ -44,11 +48,10 @@ body {
 }
 
 #add-button:hover {
-    background-color: rgb(103, 139, 67);
-    color: white;
+    background-color: rgb(136, 172, 102);
 }
 
-#back-button {
+#back-button, .delete-button {
     width: 10em;
     height: 2.5em;
 
@@ -58,4 +61,35 @@ body {
 
     font-size: small;
     font-weight: bold;
+}
+
+#notes-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.note-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 1em;
+}
+
+textarea {
+    width: 50vw;
+    height: 10em;
+
+    padding: 1em;
+
+    border-radius: 1em;
+
+    resize: none;
+}
+
+textarea:disabled {
+    background-color: white;
 }

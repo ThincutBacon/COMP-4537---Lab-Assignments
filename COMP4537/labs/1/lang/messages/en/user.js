@@ -5,8 +5,9 @@ export const STRINGS = {
     READER_PAGE_BUTTON: "Reader",
 
     ADD_BUTTON: "Add",
+    DELETE_BUTTON: "Delete",
     BACK_BUTTON: "Back",
 
-    STORE_TIME_MESSAGE: "Stored at: ",
-    UPDATE_TIME_MESSAGE: "Updated at: "
+    STORE_TIME_MESSAGE: "Last Stored at: ",
+    UPDATE_TIME_MESSAGE: "Last Updated at: "
 }
