@@ -18,7 +18,7 @@ body {
     align-items: center;
 }
 
-button {
+#nav-writer, #nav-reader {
     width: 10em;
     height: 2.5em;
 
@@ -27,4 +27,35 @@ button {
     border-radius: 1em;
 
     font-size: larger;
+}
+
+#add-button {
+    width: 10em;
+    height: 2.5em;
+
+    margin: 0.5em;
+
+    border-radius: 1em;
+
+    background-color: rgb(171, 211, 131);
+
+    font-size: small;
+    font-weight: bold;
+}
+
+#add-button:hover {
+    background-color: rgb(103, 139, 67);
+    color: white;
+}
+
+#back-button {
+    width: 10em;
+    height: 2.5em;
+
+    margin: 2em;
+
+    border-radius: 1em;
+
+    font-size: small;
+    font-weight: bold;
 }
