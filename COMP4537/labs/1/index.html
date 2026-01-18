@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Note Taker</title>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- 
     Lab 1: JSON, Object Constructor, localStorage
     Kanon Nishiyama
     -->
+    <div id="content">
+        <h1 id="app-title"></h1>
 
-    <button id="nav-writer">Writer</button>
+        <a href="./writer.html">
+            <button id="nav-writer"></button>
+        </a>
+        
+        <a href="./reader.html">
+            <button id="nav-reader"></button>
+        </a>
+    </div>
 
-    <button id="nav-reader">Reader</button>
-    
+    <script type="module" src="./js/script.js"></script>
 </body>
 </html>
