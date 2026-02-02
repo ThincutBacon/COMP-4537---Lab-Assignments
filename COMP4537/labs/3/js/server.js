@@ -80,7 +80,7 @@ class Server {
                 break;
             
                 default: {
-                    console.log("Hello");
+                    console.log("Hello World!");
                     res.writeHead(200, {
                         "content-type": "text/plain"
                     }); 
