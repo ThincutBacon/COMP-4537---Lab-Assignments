@@ -38,7 +38,7 @@ class Server {
                     const text = queries["text"];
                     console.log(text);
 
-                    this.fs.appendFile("./text/file.txt", `${text}\n`, (err) => {
+                    this.fs.appendFile("../text/file.txt", `${text}\n`, (err) => {
                         if (err) {
                             res.writeHead(500, {
                                 "content-type": "text/plain"
@@ -58,7 +58,7 @@ class Server {
                 case `${this.BASE_PATH}readFile/`: {
                     const filename = queries["filename"];
                     
-                    this.fs.readFile(`./text/${filename}`, "utf8", (err, data) => {
+                    this.fs.readFile(`../text/${filename}`, "utf8", (err, data) => {
                         if (err) {
                             res.writeHead(404, {
                                 "content-type": "text/plain"
