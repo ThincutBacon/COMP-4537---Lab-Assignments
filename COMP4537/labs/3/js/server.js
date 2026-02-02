@@ -75,13 +75,17 @@ class Server {
                 break;
             
                 default: {
+                    console.log("Hello");
+                    res.writeHead(200, {
+                        "content-type": "text/plain"
+                    }); 
                     res.end('Hello, world!');
                 }
             }
 
         }).listen(this.PORT, '0.0.0.0', () => console.log(`Server is listening on port ${this.PORT}`));
     }
-    
+
     getCustomMessage (name) {
         const full_message = `${this.STRINGS.MESSAGE} ${new this.Utils().getDate()}.`;
         const placeholder = this.STRINGS.MESSAGE_NAME_PLACEHOLDER;
