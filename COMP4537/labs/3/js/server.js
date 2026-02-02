@@ -43,13 +43,13 @@ class Server {
                             res.writeHead(500, {
                                 "content-type": "text/plain"
                             });  
-                            res.end(`Failed to write to file: ${filename}`);
+                            res.end(`Failed to append: ${text}`);
                             return;
                         }
                         res.writeHead(200, {
                             "content-type": "text/plain"
                         });  
-                        res.end(`Successfully Appended: ${text}`);
+                        res.end(`Successfully appended: ${text}`);
                     });
                                  
                 }
