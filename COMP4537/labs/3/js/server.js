@@ -29,8 +29,12 @@ class Server {
     getCustomMessage (name) {
         const full_message = `${this.STRINGS.MESSAGE} ${new this.Utils().getDate()}.`;
         const placeholder = this.STRINGS.MESSAGE_NAME_PLACEHOLDER;
+
+        const custom_message = full_message.replace(placeholder, name);
+
+        const styled_message = `<span style="color:blue">${custom_message}</span>`
         
-        return full_message.replace(placeholder, name);
+        return styled_message;
     }
 
 }
