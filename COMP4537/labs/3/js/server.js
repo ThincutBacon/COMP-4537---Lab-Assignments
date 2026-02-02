@@ -73,11 +73,15 @@ class Server {
                     })
                 }
                 break;
+            
+                default: {
+                    res.end('Hello, world!');
+                }
             }
 
-        }).listen(this.PORT, () => console.log(`Server is listening on port ${this.PORT}`));
+        }).listen(this.PORT, '0.0.0.0', () => console.log(`Server is listening on port ${this.PORT}`));
     }
-
+    
     getCustomMessage (name) {
         const full_message = `${this.STRINGS.MESSAGE} ${new this.Utils().getDate()}.`;
         const placeholder = this.STRINGS.MESSAGE_NAME_PLACEHOLDER;
