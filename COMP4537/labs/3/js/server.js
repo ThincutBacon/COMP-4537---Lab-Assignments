@@ -83,7 +83,7 @@ class Server {
                 }
             }
 
-        }).listen(this.PORT, '0.0.0.0', () => console.log(`Server is listening on port ${this.PORT}`));
+        }).listen(this.PORT, () => console.log(`Server is listening on port ${this.PORT}`));
     }
 
     getCustomMessage (name) {
@@ -99,4 +99,4 @@ class Server {
 
 }
 
-new Server(443);
+new Server(5000);
