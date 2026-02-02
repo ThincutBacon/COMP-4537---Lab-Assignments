@@ -1,7 +1,10 @@
 class Server {
-    constructor() {
+    constructor(port) {
+        this.PORT = port;
+
         this.http = require('http');
         this.url = require('url'); 
+        this.fs = require('fs');
 
         this.STRINGS = require("../lang/messages/en/user.js").STRINGS;
 
@@ -12,18 +15,23 @@ class Server {
 
     init () {
         this.http.createServer((req, res) => {
-            let queries = this.url.parse(req.url, true)
+            const parsed_url = this.url.parse(req.url, true);
+            
+            const pathname = parsed_url.pathname;
+            const queries = parsed_url.query;
 
-            const name = queries.query["name"]
-            const cust_message = this.getCustomMessage(name);
-            res.writeHead(200, {
-                "content-type": "text/html"
-            });
-            res.write(cust_message);
-            res.end();
-        }).listen(5000)
+            if (pathname ==  "/COMP4537/labs/3/getDate/") {
+                const name = queries["name"]
+                const cust_message = this.getCustomMessage(name);
+                res.writeHead(200, {
+                    "content-type": "text/html"
+                });
+                res.write(cust_message);   
+                res.end();
+            }
 
-        console.log("listening...")
+            
+        }).listen(this.PORT, () => console.log(`Server is listesning on port ${this.PORT}`));
     }
 
     getCustomMessage (name) {
@@ -39,4 +47,4 @@ class Server {
 
 }
 
-new Server()
+new Server(5000);
